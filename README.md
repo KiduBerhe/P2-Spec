@@ -11,7 +11,7 @@ The E-Commerce Single-Page Application will allow consumers to browse, search, a
    - TypeScript
  - Data Persistence
    - PostgreSQL
-   - Hibernate
+   - Hibernate/Spring Data JPA - spring data is optional, and is an abstracction over ORM, it uses hiberate as it's ORM by default
  - AWS
    - RDS
    - S3
@@ -23,8 +23,7 @@ The E-Commerce Single-Page Application will allow consumers to browse, search, a
  - Angular
 
 ## Forbidden Abstractions:
- - Spring Data JPA - Spring Data JPA uses Hibernate as an ORM provider. Before we get to that level of abstraction, we will use hibernate directly ourselves.
-
+Use whatever you like, as long as the stipulations in this document are met.
 
 # Functional Requirements
 ### Required:
@@ -53,7 +52,9 @@ The persistence layer shall use Hibernate ORM to translate between the database 
  - As a user, I can remove items from my cart.
  - As a user, I can checkout to purchase the items in my cart.
 
-### Stretch Goals:
+### Choose 4 of the below 8 user stories to add as required user stories:
+
+### Optional(pick at least 4): 
  - As a User, I should be able to select an amount of an item to add to my cart as I am adding an item
  - As a User, I should be able to search the product list to better find the item(s) I am interested in
  - As a User, I should be able to see and purchase items that are on sale for a lower price.
