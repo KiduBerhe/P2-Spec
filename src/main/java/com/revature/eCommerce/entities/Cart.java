@@ -17,9 +17,10 @@ public class Cart {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "item_id")
-    private List<Item> item;
+    //@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    //@JoinColumn(name = "item_id")
+    private List<Item> items;
 
     @Column
     private int quantity;
@@ -33,7 +34,7 @@ public class Cart {
 
     public Cart(Customer customer, List<Item> item, int quantity, Date checkOutDate) {
         this.customer = customer;
-        this.item = item;
+        this.items = item;
         this.quantity = quantity;
         this.checkOutDate = checkOutDate;
     }
@@ -54,12 +55,12 @@ public class Cart {
         this.customer = customer;
     }
 
-    public List<Item> getItem() {
-        return item;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setItem(List<Item> item) {
-        this.item = item;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
     public int getQuantity() {
@@ -83,12 +84,12 @@ public class Cart {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cart cart = (Cart) o;
-        return quantity == cart.quantity && Objects.equals(cartId, cart.cartId) && Objects.equals(customer, cart.customer) && Objects.equals(item, cart.item) && Objects.equals(checkOutDate, cart.checkOutDate);
+        return quantity == cart.quantity && Objects.equals(cartId, cart.cartId) && Objects.equals(customer, cart.customer) && Objects.equals(items, cart.items) && Objects.equals(checkOutDate, cart.checkOutDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cartId, customer, item, quantity, checkOutDate);
+        return Objects.hash(cartId, customer, items, quantity, checkOutDate);
     }
 
     @Override
@@ -96,7 +97,7 @@ public class Cart {
         return "Cart{" +
                 "cartId=" + cartId +
                 ", customer=" + customer +
-                ", item=" + item +
+                ", item=" + items +
                 ", quantity=" + quantity +
                 ", checkOutDate=" + checkOutDate +
                 '}';

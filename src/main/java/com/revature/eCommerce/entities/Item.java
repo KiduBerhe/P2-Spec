@@ -1,6 +1,7 @@
 package com.revature.eCommerce.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -32,8 +33,15 @@ public class Item {
     private Integer ageRestriction;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JoinColumn(name = "category_id")
+    @JsonIgnore
     private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    @JsonIgnore
+    private Cart cart;
+
 
     public Item() {
     }

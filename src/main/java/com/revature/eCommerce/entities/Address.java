@@ -24,6 +24,7 @@ public class Address {
     private String type;
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
     public Address() {
